@@ -1,15 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
-contract Will {
+// contract allows only the creator to create new coins
+// anyine can send coins without authentication
+
+contract Coin {
     // define variables
-    address owner;
-    uint fortune;
-    bool deceased;
+    address public minter;
+    address (address => uint) public balances;
     
-    constructor() payable {
+    constructor() payable public {
         // set variables
-        owner = msg.sender; // represents address called
+        minter = msg.sender; // represents address called
         fortune = msg.value; // how much ether is being represents
         deceased = false;
     }
@@ -45,10 +47,7 @@ contract Will {
 
     function payout() private mustBeDeceased {
         for (uint256 i = 0; i < familyWallets.length; i++) {
-            // familyWallets[i].transfer(inheritance[familyWallets[i]]);
-            (bool success, ) = familyWallets[i].call{value:inheritance[familyWallets[i]]}("");
-            require(success, "Transfer failed.");
-
+            familyWallets[i].transfer(inheritance[familyWallets[i]]);
         }
     }
 
