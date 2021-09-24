@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.7;
 
 contract Will {
@@ -17,13 +17,13 @@ contract Will {
     // create modifier functions so only owner can call it
     modifier onlyOwner {
         require(msg.sender == owner);
-        _; // creates a modifier(that acts as if statements) that we can add to funcitons
+        _; // function body is inserted where the special symbol "_;"
     }
     
     // create modifier functions to only allocate funds if gramps is deceased
     modifier mustBeDeceased {
         require(deceased == true);
-        _; // creates a modifier(that acts as if statements) that we can add to funcitons
+        _; // function body is inserted where the special symbol "_;"
     }
     
     // list of family wallets
@@ -46,6 +46,7 @@ contract Will {
     function payout() private mustBeDeceased {
         for (uint256 i = 0; i < familyWallets.length; i++) {
             // familyWallets[i].transfer(inheritance[familyWallets[i]]);
+            // or
             (bool success, ) = familyWallets[i].call{value:inheritance[familyWallets[i]]}("");
             require(success, "Transfer failed.");
 
