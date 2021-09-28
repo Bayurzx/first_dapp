@@ -179,5 +179,5 @@ That is all for now on writing a Crypto Will in Solidity. I hope you were at lea
 <br>
 If you appreciate the effort and would like to buy me a Crypto Coffee then ==>
 
-`eth: 0x86f130d2Ef312CEa4Ea088048A834D17D6EBc345`
+`eth: 0xeF7dB2944e6BFaF68C1Caf623552A0E9353659Ca`
 
